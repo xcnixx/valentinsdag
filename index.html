@@ -102,11 +102,15 @@
     .image-wrap{
       margin: 18px 0 22px;
       width:100%;
-      aspect-ratio: 16/9;
+      max-height:70vh;      /* <-- tillater høyere bilder på PC/telefon uten å croppe */
+      height:auto;
       border-radius: 20px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.04);
+      display:flex;
+      align-items:center;
+      justify-content:center;
       position:relative;
     }
 
@@ -114,21 +118,23 @@
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%);
+      background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0) 60%); /* litt svakere overlay */
       pointer-events:none;
       opacity:0.65;
     }
 
     .image-wrap img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+      max-width:100%;
+      max-height:100%;
+      width:auto;
+      height:auto;
+      object-fit:contain; /* viser hele bildet uten cropping */
       display:block;
       filter: saturate(1.08) contrast(1.02);
     }
 
     .placeholder{
-      height:100%;
+      min-height:160px; /* sikrer at plassholder ikke kollapser når bildet mangler */
       display:grid;
       place-items:center;
       text-align:center;
@@ -257,7 +263,7 @@
       </div>
 
       <div class="image-wrap">
-        <img src="ditt-bilde.jpg" alt="Bilde"
+        <img src="Snapchat-263915752.jpg" alt="Bilde"
              onerror="this.remove(); document.getElementById('ph').style.display='grid';" />
         <div id="ph" class="placeholder" style="display:none;">
           Legg et bilde i samme mappe og kall det <b>ditt-bilde.jpg</b><br/>
